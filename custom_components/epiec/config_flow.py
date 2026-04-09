@@ -26,10 +26,8 @@ from .const import DEFAULT_SCAN_INTERVAL, DOMAIN, MIN_SCAN_INTERVAL
 
 _LOGGER = logging.getLogger(__name__)
 
-# TODO adjust the data schema to the data that you need
 STEP_USER_DATA_SCHEMA = vol.Schema(
     {
-        vol.Required(CONF_HOST, description={"suggested_value": "10.10.10.1"}): str,
         vol.Required(CONF_USERNAME, description={"suggested_value": "test"}): str,
         vol.Required(CONF_PASSWORD, description={"suggested_value": "1234"}): str,
     }
