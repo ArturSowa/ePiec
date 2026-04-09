@@ -1,4 +1,3 @@
-"""Config flow for Example Integration integration."""
 
 from __future__ import annotations
 
@@ -22,7 +21,7 @@ from homeassistant.const import (
 from homeassistant.core import HomeAssistant, callback
 from homeassistant.exceptions import HomeAssistantError
 
-from .api import APIAuthError, APIConnectionError, PushAPI
+from .api import API, APIAuthError, APIConnectionError
 from .const import DEFAULT_SCAN_INTERVAL, DOMAIN, MIN_SCAN_INTERVAL
 
 _LOGGER = logging.getLogger(__name__)
@@ -50,9 +49,9 @@ async def validate_input(hass: HomeAssistant, data: dict[str, Any]) -> dict[str,
     #     your_validate_func, data[CONF_USERNAME], data[CONF_PASSWORD]
     # )
 
-    api = PushAPI(data[CONF_HOST], data[CONF_USERNAME], data[CONF_PASSWORD])
+    api = API(data[CONF_HOST], data[CONF_USERNAME], data[CONF_PASSWORD])
     try:
-        await api.async_connect()
+        await hass.async_add_executor_job(api.connect)
         # If you cannot connect, raise CannotConnect
         # If the authentication is wrong, raise InvalidAuth
     except APIAuthError as err:
