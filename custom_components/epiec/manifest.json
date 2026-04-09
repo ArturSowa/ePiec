@@ -1,6 +1,6 @@
 {
-  "domain": "msp_integration_101_template",
-  "name": "MSP Integration 101 Template Example",
+  "domain": "epiec",
+  "name": "ePiec - Tech Sterownik Pellet",
   "codeowners": [
     "@msp1974"
   ],
